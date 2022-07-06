@@ -2,6 +2,7 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   context: path.resolve(__dirname, 'src'),
@@ -13,6 +14,11 @@ module.exports = {
   },
   devServer: {
     port: 1212,
+    devMiddleware: {
+      index: true,
+      mimeTypes: { phtml: 'text/html' },
+      writeToDisk: true,
+    },
   },
   optimization: {
     splitChunks: {
@@ -26,6 +32,11 @@ module.exports = {
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       filename: 'styles.css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        { from: "assets/source", to: "source" },
+      ],
     }),
   ],
   module: {
@@ -45,8 +56,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|svg|gif)$/,
-        use: ['file-loader'],
+        test: /\.(png|jpg|svg|gif|webp)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: 'assets/[name][ext]',
+        },
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
@@ -56,14 +70,15 @@ module.exports = {
         },
       },
       {
-        test: /\.xml$/,
-        use: ['xml-loader'],
-      },
-      {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.(html)$/,
+        use: ['html-loader'],
+      },
+
     ],
   },
   resolve: {
