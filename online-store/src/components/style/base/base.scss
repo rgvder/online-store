@@ -1,0 +1,42 @@
+@import "constants";
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&display=swap');
+
+* {
+  list-style-type: none;
+  box-sizing: border-box;
+  outline:none;
+  border: none;
+  margin: 0;
+  padding: 0;
+}
+html,
+body {
+  height: 100%;
+}
+
+html {
+  font-size: 10px;
+  font-family: $font-family-basic;
+}
+
+.wrapper {
+  margin: 0 auto;
+  padding: 0 30px;
+  max-width: 1880px;
+}
+
+.text{
+  @include font(normal, 400, 1.4rem, 150%);
+  color: $color-additional;
+}
+
+.feature-text {
+  color: $color-basic;
+}
+
+.header-text {
+  @include font(normal, 400, 1.7rem, 150%);
+  color: $color-basic;
+  margin-bottom: 10px;
+}

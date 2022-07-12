@@ -1,0 +1,28 @@
+@import "constants";
+
+.button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  @include font(normal, 400, 1.2rem, 314%);
+  letter-spacing: 0.5px;
+  padding: 2px 14px;
+
+  &_basic {
+    background-color: $color-brand;
+    border: 1px solid $color-brand;
+    color: $color-meta;
+  }
+
+  &_alternative {
+    background-color: inherit;
+    color: $color-additional;
+    border: 1px solid $color-additional;
+  }
+
+  &_icon {
+    background-color: inherit;
+    padding: 0;
+  }
+}

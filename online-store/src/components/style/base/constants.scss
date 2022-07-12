@@ -1,0 +1,15 @@
+$font-family-basic: 'Lato', 'Arial', sans-serif;
+
+$color-basic: #1E212C;
+$color-brand: #17696A;
+$color-meta: #FFFFFF;
+
+$color-additional: #787A80;
+$color-additional-light: #D7DADD;
+
+@mixin font($style, $weight, $size, $height) {
+  font-style: $style;
+  font-weight: $weight;
+  font-size: $size;
+  line-height: $height;
+}

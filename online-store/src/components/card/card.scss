@@ -1,0 +1,54 @@
+@import "../style/base/constants";
+
+.card {
+  display: flex;
+  border-bottom: 1px solid $color-additional;
+  padding: 20px;
+  justify-content: space-between;
+  align-items: center;
+
+  &__image {
+    display: block;
+    padding-right: 20px;
+  }
+
+  &__info {
+    padding-right: 20px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__buy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__price {
+    @include font(normal, 400, 2rem, 150%);
+    color: $color-basic;
+  }
+
+  &__buttons {
+    display: flex;
+    padding: 7px 0;
+
+    :not(:last-child) {
+      margin-right: 16px;
+    }
+
+  }
+
+  &__basket {
+    margin-right: 7px;
+  }
+}
+
+.info__list {
+  margin-bottom: 7px;
+}
+
+.icon-heart {
+  fill: $color-additional;
+}
+

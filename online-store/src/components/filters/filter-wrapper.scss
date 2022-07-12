@@ -1,0 +1,19 @@
+@import "../style/base/constants";
+
+.filters {
+  flex: 0 0 25%;
+}
+
+.input-text {
+  border: 1px solid $color-additional-light;
+  border-radius: 4px;
+  width: 190px;
+  height: 35px;
+  @include font(normal, 400, 1.2rem, 150%);
+  color: $color-basic;
+
+  &:focus {
+    border: 1px solid rgba(23, 105, 106, 0.4);
+    box-shadow: 0 80px 80px -20px rgba(23, 105, 106, 0.08), 0px 30px 24px -10px rgba(23, 105, 106, 0.05), 0px 12px 10px -6px rgba(23, 105, 106, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
+  }
+}
