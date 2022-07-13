@@ -3,7 +3,6 @@ import {templateFilter} from "./template-filter";
 import {FilterValue, Sotring} from "../../models/filter-value.interface";
 import {EventEmitter} from "../../controllers/event-emitter";
 import {Loader} from "../../controllers/loader";
-import {BaseObject} from "../../models/base.interface";
 import {Brand} from "../../models/catalog.interface";
 
 export class Filter {
@@ -12,14 +11,11 @@ export class Filter {
     private loader: Loader = new Loader();
     private filterBrand: Brand[] = [];
 
-    constructor(initialValue?: FilterValue) {
+    constructor(brands: Brand[], initialValue?: FilterValue) {
         if (initialValue) {
             this.value = initialValue;
         }
-
-        this.loader.load(`/source/brands.json`, (data: BaseObject[]) => {
-            this.filterBrand = data as Brand[];
-        })
+        this.filterBrand = brands;
     }
 
     public render(selector: string): void {
@@ -33,6 +29,7 @@ export class Filter {
 
         this.addListeners();
         this.eventEmitter.emit('filterChange', this.value);
+        console.log(this.filterBrand);
     }
 
     private addListeners(): void {
