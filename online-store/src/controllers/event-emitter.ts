@@ -1,5 +1,7 @@
+import {BaseObject} from "../models/base.interface";
+
 export class EventEmitter {
-    private events: Map<string, ((data: Record<string, string | number | boolean>) => void)[]> = new Map();
+    private events: Map<string, ((data: BaseObject) => void)[]> = new Map();
     private static instance: EventEmitter;
 
     constructor() {
@@ -11,7 +13,7 @@ export class EventEmitter {
         return this;
     }
 
-    public on(name: string, listener: (data: Record<string, string | number | boolean>) => void) {
+    public on(name: string, listener: (data: BaseObject) => void) {
         if (!this.events.has(name)) {
             this.events.set(name, []);
         }
@@ -25,15 +27,15 @@ export class EventEmitter {
         }
 
         this.events.set(name, (this.events.get(name) ?? [])
-            .filter((listener: (data: Record<string, string | number | boolean>) => void) => listener !== listenerToRemove));
+            .filter((listener: (data: BaseObject) => void) => listener !== listenerToRemove));
     }
 
 
-    public emit(name: string, data: Record<string, string | number | boolean>) {
+    public emit(name: string, data: BaseObject) {
         if (!this.events.has(name)) {
             return;
         }
 
-        this.events.get(name)?.forEach((callback: (data: Record<string, string | number | boolean>) => void) => callback(data));
+        this.events.get(name)?.forEach((callback: (data: BaseObject) => void) => callback(data));
     }
 }

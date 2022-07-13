@@ -1,10 +1,6 @@
-import {Item} from "../models/item.interface";
+import {BaseObject} from "../models/base.interface";
 
 export class Loader {
-
-    constructor(callback: (data: Item[]) => void) {
-        this.load(callback);
-    }
 
     private static errorHandler(res: Response): Response {
         if (!res.ok) {
@@ -16,11 +12,11 @@ export class Loader {
         return res;
     }
 
-    private load(callback: (data: Item[]) => void): void {
-        fetch(`/source/items.json`)
+    public load(url: string, callback: (data: BaseObject[]) => void): void {
+        fetch(url)
             .then((res: Response) => Loader.errorHandler(res))
             .then((res: Response) => res.json())
-            .then((data: Item[]) => {
+            .then((data: BaseObject[]) => {
                 callback(data);
             })
             .catch((err: Error) => console.error(err));

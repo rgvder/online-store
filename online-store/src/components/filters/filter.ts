@@ -2,15 +2,24 @@ import {ElementBuilder} from "../../controllers/element-builder";
 import {templateFilter} from "./template-filter";
 import {FilterValue, Sotring} from "../../models/filter-value.interface";
 import {EventEmitter} from "../../controllers/event-emitter";
+import {Loader} from "../../controllers/loader";
+import {BaseObject} from "../../models/base.interface";
+import {Brand} from "../../models/catalog.interface";
 
 export class Filter {
-    private value: FilterValue = {query: '', sorting: Sotring.Rating};
+    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: []};
     private eventEmitter: EventEmitter = new EventEmitter();
+    private loader: Loader = new Loader();
+    private filterBrand: Brand[] = [];
 
     constructor(initialValue?: FilterValue) {
         if (initialValue) {
             this.value = initialValue;
         }
+
+        this.loader.load(`/source/brands.json`, (data: BaseObject[]) => {
+            this.filterBrand = data as Brand[];
+        })
     }
 
     public render(selector: string): void {

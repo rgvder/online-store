@@ -1,0 +1,1 @@
+export type BaseObject = Record<string, string | number | boolean | number[]>;
