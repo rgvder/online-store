@@ -4,6 +4,7 @@ export interface Item extends BaseObject {
     id: number;
     image: string;
     brand: string;
+    brandId: number;
     model: string;
     color: string;
     price: number;

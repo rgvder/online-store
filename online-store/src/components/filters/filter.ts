@@ -1,5 +1,5 @@
 import {ElementBuilder} from "../../controllers/element-builder";
-import {templateFilter} from "./template-filter";
+import {templateCheckbox, templateFilter} from "./template-filter";
 import {FilterValue, Sotring} from "../../models/filter-value.interface";
 import {EventEmitter} from "../../controllers/event-emitter";
 import {Loader} from "../../controllers/loader";
@@ -22,14 +22,13 @@ export class Filter {
         const appWrapper: HTMLElement = document.querySelector(selector) as HTMLElement;
 
         const filterWrapper: HTMLElement = ElementBuilder.buildElement(
-            templateFilter({query: 'query'})
+            templateFilter({brandCheckbox: this.filterBrand.map((item: Brand) => templateCheckbox(item)).join('')})
         );
 
         appWrapper.prepend(filterWrapper);
 
         this.addListeners();
         this.eventEmitter.emit('filterChange', this.value);
-        console.log(this.filterBrand);
     }
 
     private addListeners(): void {
@@ -62,5 +61,21 @@ export class Filter {
             this.value.sorting = sortingSelect.value as Sotring;
             this.eventEmitter.emit('filterChange', this.value);
         });
+
+        const brandCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('brandCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
+
+        Array.from<HTMLInputElement>(brandCheckboxes).forEach((element: HTMLInputElement) => {
+            element.addEventListener('change', () => {
+                const set: Set<number> = new Set(this.value.brand);
+                if (element.checked) {
+                    set.add(+element.id);
+                } else {
+                    set.delete(+element.id);
+                }
+
+                this.value.brand = Array.from(set);
+                this.eventEmitter.emit('filterChange', this.value);
+            })
+        })
     }
 }

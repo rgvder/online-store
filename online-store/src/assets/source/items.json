@@ -1,8 +1,9 @@
 [
   {
     "id": 0,
-    "image": "assets/items/0.Roborock-S5-MAX-white.webp",
+    "image": "source/items/0.Roborock-S5-MAX-white.webp",
     "brand": "Roborock",
+    "brandId": 0,
     "model": "Roborock S5 MAX",
     "color": "белый",
     "price": 32990,
@@ -15,8 +16,9 @@
   },
   {
     "id": 1,
-    "image": "assets/items/1.Roborock-S5-MAX-black.webp",
+    "image": "source/items/1.Roborock-S5-MAX-black.webp",
     "brand": "Roborock",
+    "brandId": 0,
     "model": "Roborock S5 MAX",
     "color": "черный",
     "price": 32990,
@@ -30,8 +32,9 @@
 
   {
     "id": 2,
-    "image": "assets/items/2.Mi-Robot-Vacuum-Cleaner-1S-CN.webp",
+    "image": "source/items/2.Mi-Robot-Vacuum-Cleaner-1S-CN.webp",
     "brand": "Xiaomi",
+    "brandId": 1,
     "model": "Xiaomi Mi Robot Vacuum Cleaner 1S CN",
     "color": "белый",
     "price": 16990,
@@ -45,8 +48,9 @@
 
   {
     "id": 3,
-    "image": "assets/items/3.Xiaomi-Dreame-Bot-D9-Pro.webp",
+    "image": "source/items/3.Xiaomi-Dreame-Bot-D9-Pro.webp",
     "brand": "Xiaomi",
+    "brandId": 1,
     "model": "Xiaomi Dreame Bot D9 Pro",
     "color": "черный",
     "price": 30634,
@@ -60,8 +64,9 @@
 
   {
     "id": 4,
-    "image": "assets/items/4.Polaris-PVCR-3200-IQ-Home-Aqua-blue.webp",
+    "image": "source/items/4.Polaris-PVCR-3200-IQ-Home-Aqua-blue.webp",
     "brand": "Polaris",
+    "brandId": 2,
     "model": "Polaris PVCR 3200 IQ Home Aqua",
     "color": "синий",
     "price": 17990,
@@ -75,8 +80,9 @@
 
   {
     "id": 5,
-    "image": "assets/items/5.Polaris-PVCR-3200-IQ-Home-Aqua-white.webp",
+    "image": "source/items/5.Polaris-PVCR-3200-IQ-Home-Aqua-white.webp",
     "brand": "Polaris",
+    "brandId": 2,
     "model": "Polaris PVCR 3200 IQ Home Aqua",
     "color": "белый",
     "price": 17990,
@@ -90,8 +96,9 @@
 
   {
     "id": 6,
-    "image": "assets/items/6.Tefal-RG7133RH.webp",
+    "image": "source/items/6.Tefal-RG7133RH.webp",
     "brand": "Tefal",
+    "brandId": 3,
     "model": "Tefal RG7133RH",
     "color": "красный",
     "price": 10990,

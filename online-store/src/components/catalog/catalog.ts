@@ -22,7 +22,11 @@ export class Catalog {
             const filterItems: Item[] = this.items
                 .filter((item: Item) => {
                     const regExp = new RegExp(`${data?.query ?? ''}`, 'gi');
-                    return regExp.test(item.model);
+                    const isQuery: boolean = regExp.test(item.model);
+                    const isBrand = !data.brand?.length || data.brand.includes(item.brandId);
+
+                    return isQuery && isBrand;
+
                 })
                 .sort((a: Item, b: Item) => {
                     if (data.sorting === Sotring.NameAsc) {
