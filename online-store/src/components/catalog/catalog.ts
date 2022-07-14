@@ -25,13 +25,14 @@ export class Catalog {
                     const isQuery: boolean = regExp.test(item.model);
                     const isBrand = !data.brand?.length || data.brand.includes(item.brandId);
                     const isCleaningType = !data.cleaningType?.length || data.cleaningType.includes(item.cleaningTypeId);
+                    const isColor = !data.color?.length || data.color.includes(item.colorId);
                     let isPrice = true;
 
                     if (data.price?.[0] && data.price?.[1]) {
                         isPrice = item.price >= data.price[0] && item.price <= data.price[1];
                     }
 
-                    return isQuery && isBrand && isCleaningType && isPrice;
+                    return isQuery && isBrand && isCleaningType && isColor && isPrice;
 
                 })
                 .sort((a: Item, b: Item) => {

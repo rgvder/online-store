@@ -7,6 +7,16 @@ export const templateCheckbox = ElementBuilder.buildTemplate`
     </div>
 `;
 
+export const templateColorCheckbox = ElementBuilder.buildTemplate`
+    <div>
+      <input type="checkbox" id="${'id'}" name="${'id'}">
+      <label for="${'id'}">
+        <span>${'title'}</span>
+        <span class="color-checkbox" style="background-color:${'additional'};"></span>
+      </label>
+    </div>
+`;
+
 export const templateFilter = ElementBuilder.buildTemplate`
 <form class="filter__form" name="filter">
   <div class="search">
@@ -30,5 +40,10 @@ export const templateFilter = ElementBuilder.buildTemplate`
     <fieldset name="cleaningTypeCheckbox">
     <legend>Тип уборки</legend>
     ${'cleaningTypeCheckbox'}
+    </fieldset>
+    
+    <fieldset name="colorCheckbox">
+    <legend>Цвет</legend>
+    ${'colorCheckbox'}
     </fieldset>
 </form>`;

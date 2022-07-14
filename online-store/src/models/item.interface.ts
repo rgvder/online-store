@@ -7,6 +7,7 @@ export interface Item extends BaseObject {
     brandId: number;
     model: string;
     color: string;
+    colorId: number;
     price: number;
     rating: number;
     count: number;

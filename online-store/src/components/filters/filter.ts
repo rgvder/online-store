@@ -1,5 +1,5 @@
 import {ElementBuilder} from "../../controllers/element-builder";
-import {templateCheckbox, templateFilter} from "./template-filter";
+import {templateCheckbox, templateFilter, templateColorCheckbox} from "./template-filter";
 import {FilterValue, Sotring} from "../../models/filter-value.interface";
 import {EventEmitter} from "../../controllers/event-emitter";
 import {Option} from "../../models/catalog.interface";
@@ -7,13 +7,14 @@ import * as noUiSlider from 'nouislider';
 import {Item} from "../../models/item.interface";
 
 export class Filter {
-    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: [], price: [], cleaningType: []};
+    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: [], price: [], cleaningType: [], color: []};
     private eventEmitter: EventEmitter = new EventEmitter();
     private filterBrand: Option[] = [];
     private cleaningType: Option[] = [];
+    private color: Option[] = [];
     private items: Item[] = [];
 
-    constructor(brands: Option[], items: Item[], cleaningType: Option[], initialValue?: FilterValue) {
+    constructor(brands: Option[], items: Item[], cleaningType: Option[], color: Option[], initialValue?: FilterValue) {
         if (initialValue) {
             this.value = initialValue;
         }
@@ -21,6 +22,7 @@ export class Filter {
         this.items = items;
         this.filterBrand = brands;
         this.cleaningType = cleaningType;
+        this.color = color;
     }
 
     public render(selector: string): void {
@@ -29,7 +31,8 @@ export class Filter {
         const filterWrapper: HTMLElement = ElementBuilder.buildElement(
             templateFilter({
                 brandCheckbox: this.filterBrand.map((item: Option) => templateCheckbox(item)).join(''),
-                cleaningTypeCheckbox: this.cleaningType.map((item: Option) => templateCheckbox(item)).join('')
+                cleaningTypeCheckbox: this.cleaningType.map((item: Option) => templateCheckbox(item)).join(''),
+                colorCheckbox: this.color.map((item: Option) => templateColorCheckbox(item)).join(''),
             })
         );
 
@@ -123,9 +126,11 @@ export class Filter {
 
         const brandCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('brandCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
         const cleaningTypeCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('cleaningTypeCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
+        const colorCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('colorCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
 
         this.addCheckboxListeners(brandCheckboxes, 'brand');
         this.addCheckboxListeners(cleaningTypeCheckboxes, 'cleaningType');
+        this.addCheckboxListeners(colorCheckboxes, 'color');
 
 
 // Фильтр по цене
@@ -137,7 +142,7 @@ export class Filter {
         }))
     }
 
-    private addCheckboxListeners(checkboxes: HTMLCollectionOf<HTMLInputElement>, key: 'brand' | 'cleaningType') {
+    private addCheckboxListeners(checkboxes: HTMLCollectionOf<HTMLInputElement>, key: 'brand' | 'cleaningType'| 'color') {
         Array.from<HTMLInputElement>(checkboxes).forEach((element: HTMLInputElement) => {
             element.addEventListener('change', () => {
                 const set: Set<number> = new Set(this.value[key]);

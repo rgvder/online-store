@@ -1,0 +1,22 @@
+[
+  {
+    "id": 0,
+    "title": "белый",
+    "additional": "#fffff"
+  },
+  {
+    "id": 1,
+    "title": "черный",
+    "additional": "#000000"
+  },
+  {
+    "id": 2,
+    "title": "синий",
+    "additional": "#122cfa"
+  },
+  {
+    "id": 3,
+    "title": "красный",
+    "additional": "#f50202"
+  }
+]

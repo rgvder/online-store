@@ -22,13 +22,14 @@ export class App {
         this.loader.load(`/source/items.json`, (items: BaseObject[]) => {
             this.loader.load(`/source/brands.json`, (brands: BaseObject[]) => {
                 this.loader.load(`/source/cleaningType.json`, (cleaningType: BaseObject[]) => {
-                    this.filter = new Filter(brands as Option[], items as Item[], cleaningType as Option[]);
-                    this.catalog = new Catalog(items as Item[]);
-                    this.render();
+                    this.loader.load(`/source/colors.json`, (color: BaseObject[]) => {
+                        this.filter = new Filter(brands as Option[], items as Item[], cleaningType as Option[], color as Option[]);
+                        this.catalog = new Catalog(items as Item[]);
+                        this.render();
+                    });
                 });
             });
         });
-
     }
 
     public render(): void {
