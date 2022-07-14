@@ -2,32 +2,35 @@ import {ElementBuilder} from "../../controllers/element-builder";
 import {templateCheckbox, templateFilter} from "./template-filter";
 import {FilterValue, Sotring} from "../../models/filter-value.interface";
 import {EventEmitter} from "../../controllers/event-emitter";
-import {Loader} from "../../controllers/loader";
-import {Brand} from "../../models/catalog.interface";
+import {Option} from "../../models/catalog.interface";
 import * as noUiSlider from 'nouislider';
 import {Item} from "../../models/item.interface";
 
 export class Filter {
-    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: [], price: []};
+    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: [], price: [], cleaningType: []};
     private eventEmitter: EventEmitter = new EventEmitter();
-    private loader: Loader = new Loader();
-    private filterBrand: Brand[] = [];
+    private filterBrand: Option[] = [];
+    private cleaningType: Option[] = [];
     private items: Item[] = [];
 
-    constructor(brands: Brand[], items: Item[], initialValue?: FilterValue) {
+    constructor(brands: Option[], items: Item[], cleaningType: Option[], initialValue?: FilterValue) {
         if (initialValue) {
             this.value = initialValue;
         }
 
         this.items = items;
         this.filterBrand = brands;
+        this.cleaningType = cleaningType;
     }
 
     public render(selector: string): void {
         const appWrapper: HTMLElement = document.querySelector(selector) as HTMLElement;
 
         const filterWrapper: HTMLElement = ElementBuilder.buildElement(
-            templateFilter({brandCheckbox: this.filterBrand.map((item: Brand) => templateCheckbox(item)).join('')})
+            templateFilter({
+                brandCheckbox: this.filterBrand.map((item: Option) => templateCheckbox(item)).join(''),
+                cleaningTypeCheckbox: this.cleaningType.map((item: Option) => templateCheckbox(item)).join('')
+            })
         );
 
         appWrapper.prepend(filterWrapper);
@@ -80,7 +83,7 @@ export class Filter {
 
         inputs.forEach((element: HTMLInputElement, index: number) => {
             element.addEventListener('input', () => {
-                    filterSlider(index, +element.value);
+                filterSlider(index, +element.value);
             });
         });
 
@@ -119,20 +122,11 @@ export class Filter {
         });
 
         const brandCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('brandCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
+        const cleaningTypeCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('cleaningTypeCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
 
-        Array.from<HTMLInputElement>(brandCheckboxes).forEach((element: HTMLInputElement) => {
-            element.addEventListener('change', () => {
-                const set: Set<number> = new Set(this.value.brand);
-                if (element.checked) {
-                    set.add(+element.id);
-                } else {
-                    set.delete(+element.id);
-                }
+        this.addCheckboxListeners(brandCheckboxes, 'brand');
+        this.addCheckboxListeners(cleaningTypeCheckboxes, 'cleaningType');
 
-                this.value.brand = Array.from(set);
-                this.eventEmitter.emit('filterChange', this.value);
-            })
-        })
 
 // Фильтр по цене
         const filterPrice: noUiSlider.target = document.querySelector('.price__slider') as noUiSlider.target;
@@ -141,5 +135,21 @@ export class Filter {
             this.value.price = values as number[];
             this.eventEmitter.emit('filterChange', this.value);
         }))
+    }
+
+    private addCheckboxListeners(checkboxes: HTMLCollectionOf<HTMLInputElement>, key: 'brand' | 'cleaningType') {
+        Array.from<HTMLInputElement>(checkboxes).forEach((element: HTMLInputElement) => {
+            element.addEventListener('change', () => {
+                const set: Set<number> = new Set(this.value[key]);
+                if (element.checked) {
+                    set.add(+element.id);
+                } else {
+                    set.delete(+element.id);
+                }
+
+                this.value[key] = Array.from(set);
+                this.eventEmitter.emit('filterChange', this.value);
+            })
+        })
     }
 }

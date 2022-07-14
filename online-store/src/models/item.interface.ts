@@ -12,6 +12,7 @@ export interface Item extends BaseObject {
     count: number;
     suctionPower: number;
     cleaningType: string;
+    cleaningTypeId: number;
     isPopular: boolean;
     info: string;
 }

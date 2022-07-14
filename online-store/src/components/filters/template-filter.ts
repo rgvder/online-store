@@ -26,4 +26,9 @@ export const templateFilter = ElementBuilder.buildTemplate`
     <legend>Бренд</legend>
     ${'brandCheckbox'}
     </fieldset>
+    
+    <fieldset name="cleaningTypeCheckbox">
+    <legend>Тип уборки</legend>
+    ${'cleaningTypeCheckbox'}
+    </fieldset>
 </form>`;

@@ -6,7 +6,7 @@ import {EventEmitter} from "../controllers/event-emitter";
 import {FilterValue} from "../models/filter-value.interface";
 import {Item} from "../models/item.interface";
 import {BaseObject} from "../models/base.interface";
-import {Brand} from "../models/catalog.interface";
+import {Option} from "../models/catalog.interface";
 
 export class App {
     private eventEmitter: EventEmitter = new EventEmitter();
@@ -21,10 +21,12 @@ export class App {
     public start(): void {
         this.loader.load(`/source/items.json`, (items: BaseObject[]) => {
             this.loader.load(`/source/brands.json`, (brands: BaseObject[]) => {
-                this.filter = new Filter(brands as Brand[], items as Item[]);
-                this.catalog = new Catalog(items as Item[]);
-                this.render();
-            })
+                this.loader.load(`/source/cleaningType.json`, (cleaningType: BaseObject[]) => {
+                    this.filter = new Filter(brands as Option[], items as Item[], cleaningType as Option[]);
+                    this.catalog = new Catalog(items as Item[]);
+                    this.render();
+                });
+            });
         });
 
     }
