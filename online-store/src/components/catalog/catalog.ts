@@ -24,8 +24,13 @@ export class Catalog {
                     const regExp = new RegExp(`${data?.query ?? ''}`, 'gi');
                     const isQuery: boolean = regExp.test(item.model);
                     const isBrand = !data.brand?.length || data.brand.includes(item.brandId);
+                    let isPrice = true;
 
-                    return isQuery && isBrand;
+                    if (data.price?.[0] && data.price?.[1]) {
+                        isPrice = item.price >= data.price[0] && item.price <= data.price[1];
+                    }
+
+                    return isQuery && isBrand && isPrice;
 
                 })
                 .sort((a: Item, b: Item) => {

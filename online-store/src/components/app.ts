@@ -21,7 +21,7 @@ export class App {
     public start(): void {
         this.loader.load(`/source/items.json`, (items: BaseObject[]) => {
             this.loader.load(`/source/brands.json`, (brands: BaseObject[]) => {
-                this.filter = new Filter(brands as Brand[]);
+                this.filter = new Filter(brands as Brand[], items as Item[]);
                 this.catalog = new Catalog(items as Item[]);
                 this.render();
             })

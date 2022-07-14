@@ -12,4 +12,5 @@ export interface FilterValue extends BaseObject {
     query: string;
     sorting: Sotring;
     brand: number[];
+    price: number[];
 }

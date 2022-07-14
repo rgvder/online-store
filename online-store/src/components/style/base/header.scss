@@ -1,0 +1,9 @@
+@import "constants";
+
+.header {
+  &__wrapper {}
+  &__logo {
+    display: flex;
+    align-items: center;
+  }
+}

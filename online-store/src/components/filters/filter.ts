@@ -4,17 +4,22 @@ import {FilterValue, Sotring} from "../../models/filter-value.interface";
 import {EventEmitter} from "../../controllers/event-emitter";
 import {Loader} from "../../controllers/loader";
 import {Brand} from "../../models/catalog.interface";
+import * as noUiSlider from 'nouislider';
+import {Item} from "../../models/item.interface";
 
 export class Filter {
-    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: []};
+    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: [], price: []};
     private eventEmitter: EventEmitter = new EventEmitter();
     private loader: Loader = new Loader();
     private filterBrand: Brand[] = [];
+    private items: Item[] = [];
 
-    constructor(brands: Brand[], initialValue?: FilterValue) {
+    constructor(brands: Brand[], items: Item[], initialValue?: FilterValue) {
         if (initialValue) {
             this.value = initialValue;
         }
+
+        this.items = items;
         this.filterBrand = brands;
     }
 
@@ -27,8 +32,59 @@ export class Filter {
 
         appWrapper.prepend(filterWrapper);
 
-        this.addListeners();
         this.eventEmitter.emit('filterChange', this.value);
+
+        // Фильтр по цене
+
+        const filterPrice: noUiSlider.target = document.querySelector('.price__slider') as noUiSlider.target;
+        const inputStart: HTMLInputElement = document.querySelector('#inputStart') as HTMLInputElement;
+        const inputEnd: HTMLInputElement = document.querySelector('#inputEnd') as HTMLInputElement;
+        const inputs = [inputStart, inputEnd];
+        const arrPrice: number[] = this.items.map((item: Item) => item.price);
+        const minPrice = Math.min(...arrPrice);
+        const maxPrice = Math.max(...arrPrice);
+
+        inputStart.setAttribute('placeholder', minPrice.toString());
+        inputEnd.setAttribute('placeholder', maxPrice.toString());
+
+        noUiSlider.create(filterPrice, {
+            start: [minPrice, maxPrice],
+            connect: true,
+            tooltips: true,
+            padding: 0,
+            step: 1,
+            range: {
+                'min': minPrice,
+                'max': maxPrice
+            },
+            format: {
+                to: (value: number) => Math.round(value),
+                from: (value: string) => parseInt(value, 10)
+            }
+        });
+
+        filterPrice.noUiSlider?.on('update', ((values: (number | string)[], handle: number) => {
+            inputs[handle].value = <string>values[handle];
+        }))
+        const arr: number[] = [minPrice, maxPrice];
+
+        const filterSlider = (index: number, value: number) => {
+            arr[index] = value;
+
+            this.value.price = arr;
+
+            console.log(arr);
+
+            filterPrice.noUiSlider?.set(arr);
+        };
+
+        inputs.forEach((element: HTMLInputElement, index: number) => {
+            element.addEventListener('input', () => {
+                    filterSlider(index, +element.value);
+            });
+        });
+
+        this.addListeners();
     }
 
     private addListeners(): void {
@@ -77,5 +133,13 @@ export class Filter {
                 this.eventEmitter.emit('filterChange', this.value);
             })
         })
+
+// Фильтр по цене
+        const filterPrice: noUiSlider.target = document.querySelector('.price__slider') as noUiSlider.target;
+
+        filterPrice.noUiSlider?.on('change', ((values: (number | string)[]) => {
+            this.value.price = values as number[];
+            this.eventEmitter.emit('filterChange', this.value);
+        }))
     }
 }
