@@ -1,6 +1,6 @@
 [
   {
-    "id": 0,
+    "id": 1,
     "image": "source/items/0.Roborock-S5-MAX-white.webp",
     "brand": "Roborock",
     "brandId": 0,
@@ -16,7 +16,7 @@
     "isPopular": true
   },
   {
-    "id": 1,
+    "id": 2,
     "image": "source/items/1.Roborock-S5-MAX-black.webp",
     "brand": "Roborock",
     "brandId": 0,
@@ -33,7 +33,7 @@
   },
 
   {
-    "id": 2,
+    "id": 3,
     "image": "source/items/2.Mi-Robot-Vacuum-Cleaner-1S-CN.webp",
     "brand": "Xiaomi",
     "brandId": 1,
@@ -50,7 +50,7 @@
   },
 
   {
-    "id": 3,
+    "id": 4,
     "image": "source/items/3.Xiaomi-Dreame-Bot-D9-Pro.webp",
     "brand": "Xiaomi",
     "brandId": 1,
@@ -67,7 +67,7 @@
   },
 
   {
-    "id": 4,
+    "id": 5,
     "image": "source/items/4.Polaris-PVCR-3200-IQ-Home-Aqua-blue.webp",
     "brand": "Polaris",
     "brandId": 2,
@@ -84,7 +84,7 @@
   },
 
   {
-    "id": 5,
+    "id": 6,
     "image": "source/items/5.Polaris-PVCR-3200-IQ-Home-Aqua-white.webp",
     "brand": "Polaris",
     "brandId": 2,
@@ -101,7 +101,7 @@
   },
 
   {
-    "id": 6,
+    "id": 7,
     "image": "source/items/6.Tefal-RG7133RH.webp",
     "brand": "Tefal",
     "brandId": 3,

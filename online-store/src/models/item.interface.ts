@@ -15,5 +15,4 @@ export interface Item extends BaseObject {
     cleaningType: string;
     cleaningTypeId: number;
     isPopular: boolean;
-    info: string;
 }

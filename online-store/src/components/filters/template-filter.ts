@@ -93,4 +93,9 @@ export const templateFilter = ElementBuilder.buildTemplate`
     ${'sliderPrice'}
     
     ${'sliderSuctionPower'}
+    
+    <div class="filters__buttons">
+      <buttton class="button button_basic" id="buttonClean">Очистить</buttton>
+      <buttton class="button button_basic" id="buttonReset">Сбросить</buttton>
+    </div>
 </form>`;

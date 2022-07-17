@@ -1,6 +1,6 @@
 import {BaseObject} from "./base.interface";
 
-export enum Sotring {
+export enum Sorting {
     NameAsc = 'nameAsc',
     NameDesc = 'nameDesc',
     PriceAsc = 'priceAsc',
@@ -10,7 +10,7 @@ export enum Sotring {
 
 export interface FilterValue extends BaseObject {
     query: string;
-    sorting: Sotring;
+    sorting: Sorting;
     brand: number[];
     price: number[];
     suctionPower: number[];

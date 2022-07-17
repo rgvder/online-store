@@ -11,6 +11,12 @@
     padding: 10px 0;
   }
 
+  &__buttons {
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+  }
+
 }
 
 .search {

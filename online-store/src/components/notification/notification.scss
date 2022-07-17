@@ -1,0 +1,10 @@
+.notification {
+  display: none;
+  width: 300px;
+  height: 300px;
+  border: 2px solid black;
+
+  &_active {
+    display: block;
+  }
+}
