@@ -1,22 +1,22 @@
 [
   {
-    "id": 0,
+    "id": 200,
     "title": "белый",
-    "additional": "#fffff"
+    "additional": "#f1f1f1"
   },
   {
-    "id": 1,
+    "id": 201,
     "title": "черный",
     "additional": "#000000"
   },
   {
-    "id": 2,
+    "id": 202,
     "title": "синий",
     "additional": "#122cfa"
   },
   {
-    "id": 3,
+    "id": 203,
     "title": "красный",
-    "additional": "#f50202"
+    "additional": "#f75151"
   }
 ]

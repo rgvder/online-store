@@ -26,13 +26,19 @@ export class Catalog {
                     const isBrand = !data.brand?.length || data.brand.includes(item.brandId);
                     const isCleaningType = !data.cleaningType?.length || data.cleaningType.includes(item.cleaningTypeId);
                     const isColor = !data.color?.length || data.color.includes(item.colorId);
+                    const isPopular = !data.isPopular || item.isPopular;
                     let isPrice = true;
+                    let isSuctionPower = true;
 
                     if (data.price?.[0] && data.price?.[1]) {
                         isPrice = item.price >= data.price[0] && item.price <= data.price[1];
                     }
 
-                    return isQuery && isBrand && isCleaningType && isColor && isPrice;
+                    if (data.suctionPower?.[0] && data.suctionPower?.[1]) {
+                        isSuctionPower = item.suctionPower >= data.suctionPower[0] && item.suctionPower <= data.suctionPower[1];
+                    }
+
+                    return isQuery && isBrand && isCleaningType && isColor && isPrice && isSuctionPower && isPopular;
 
                 })
                 .sort((a: Item, b: Item) => {

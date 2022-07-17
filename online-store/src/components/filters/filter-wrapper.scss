@@ -2,56 +2,134 @@
 
 .filters {
   flex: 0 0 25%;
-  padding-right: 20px;
+  max-width: 300px;
+  padding-right: 25px;
 
   &__text {
     color: $color-basic;
     @include font(normal, 700, 1.6rem, 160%);
+    padding: 10px 0;
+  }
+
+}
+
+.search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid $color-additional-light;
+  border-radius: 4px;
+  overflow: hidden;
+  @include font(normal, 400, 1.4rem, 150%);
+  color: $color-basic;
+  background: $color-meta;
+  padding: 9px 12px;
+  transition: all .3s ease-out;
+
+  &:focus,
+  &:focus-within,
+  &:hover{
+    border: 1px solid rgba(23, 105, 106, 0.4);
+    box-shadow: 0 80px 80px -20px rgba(23, 105, 106, 0.08), 0px 30px 24px -10px rgba(23, 105, 106, 0.05), 0px 12px 10px -6px rgba(23, 105, 106, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
+  }
+
+  &__button {
+    background: transparent;
+  }
+
+  &__icon {
+    fill: $color-additional-light;
+    transition: all .3s ease-out;
+
+    &:hover {
+      fill: $color-basic;
+    }
   }
 }
 
 .input-text {
-  border: 1px solid $color-additional-light;
-  border-radius: 4px;
-  width: 190px;
-  height: 35px;
-  @include font(normal, 400, 1.2rem, 150%);
-  color: $color-basic;
-  background: $color-meta;
-
-  &:focus {
-    border: 1px solid rgba(23, 105, 106, 0.4);
-    box-shadow: 0 80px 80px -20px rgba(23, 105, 106, 0.08), 0px 30px 24px -10px rgba(23, 105, 106, 0.05), 0px 12px 10px -6px rgba(23, 105, 106, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
-  }
+  width: 100%;
+  height: 23px;
 }
 
-.price {
-
+.slider {
   &__header {
-    margin-bottom: 50px;
+    margin-bottom: 25px;
+  }
+
+  &__wrapper {
+    margin-bottom: 21px;
+    padding: 0 6px;
   }
 
   &__inputs {
     display: flex;
     justify-content: space-between;
+    align-items: center;
   }
+}
 
-  &__slider {
-    margin-bottom: 21px;
-    padding: 0 6px;
-  }
+.sorting {
+  appearance: none;
+  width: 100%;
+  @include font(normal, 400, 1.4rem, 150%);
+  color: $color-basic;
+  background-color: $color-meta;
+  height: 43px;
+}
+
+.choices__inner {
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;
+  background-color: $color-meta;
+  padding: 9px 12px;
+  border: 1px solid $color-additional-light;
+  border-radius: 4px;
+  font-size: 14px;
+  min-height: 43px;
+  overflow: hidden;
+  transition: all .3s ease-out;
+}
+
+.choices__list--single {
+  padding: 2px 0 0 0;
+}
+
+.choices[data-type*=select-one]::after {
+  border-color: $color-additional-light transparent transparent;
+}
+
+.choices__list--dropdown, .choices__list[aria-expanded] {
+  border: 1px solid $color-additional-light;
+  top: 100%;
+  margin-top: -1px;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.choices__list--dropdown .choices__item--selectable, .choices__list[aria-expanded] .choices__item--selectable {
+  padding-right: 0;
 }
 
 .input-number {
   width: 100%;
   padding: 0 7px;
+
+  &__separator {
+    display: block;
+    height: 1px;
+    width: 19px;
+    background-color: $color-basic-light;
+    margin: 0 4px;
+  }
 }
 
 .input-number-label {
   display: flex;
   align-items: center;
   padding: 9px 12px;
-  width: 110px;
+  width: 100px;
   height: 36px;
   background: $color-meta;
   border: 1px solid $color-additional-light;
@@ -113,9 +191,168 @@ height: 2px;
   display: block;
 }
 
-.color-checkbox {
-  display: block;
-  width: 15px;
-  height: 15px;
-  border-radius: 50px;
+.checkbox {
+  padding: 0;
+
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__container {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__container + &__container {
+    margin-top: 7px;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+    color: $color-additional;
+    @include font(normal, 400, 1.4rem, 150%);
+    padding-left: 30px;
+    cursor: pointer;
+
+    transition: color .1s linear;
+
+    &:before {
+      display: block;
+      margin-right: 10px;
+      width: 16px;
+      height: 16px;
+      border: 1px solid $color-additional-light;
+      background: $color-meta;
+      border-radius: 4px;
+
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      transition: all .1s linear;
+    }
+
+    &:after {
+      display: block;
+      width: 14px;
+      height: 14px;
+      background: url("../../assets/source/icons/check.svg") no-repeat;
+      background-size: 14px 14px;
+      opacity: 0;
+
+      content: '';
+      position: absolute;
+      left: 2px;
+      top: 2px;
+
+      transition: opacity .1s linear;
+    }
+
+    &:hover {
+      color: $color-basic-light;
+    }
+
+    &:hover:before {
+      border: 1px solid $color-basic-light;
+    }
+
+  }
+
+  &__input {
+    appearance: none;
+    position: absolute;
+
+    &:checked + .checkbox__label:before {
+      border: 1px solid $color-brand;
+      background: $color-brand;
+    }
+
+    &:checked + .checkbox__label:after {
+      opacity: 1;
+    }
+
+    &:checked + .checkbox__label {
+      color: $color-basic-light;
+    }
+  }
+
+  &__color-title {
+    margin-right: 6px;
+    min-width: 80px;
+    display: block;
+  }
+
+  &__color {
+    display: block;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    position: relative;
+    border: 1px solid $color-additional-light;
+  }
+
+  &__color:after {
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    border: 1px solid $color-additional-light;
+
+    position: absolute;
+    content: '';
+    top: -3px;
+    left: -3px;
+  }
+}
+
+.isPopular {
+  position: relative;
+
+  &__input {
+    appearance: none;
+    position: absolute;
+
+    &:checked + .isPopular__label .isPopular__wrapper {
+      border-color: $color-brand;
+      background: $color-brand;
+    }
+
+    &:checked + .isPopular__label .isPopular__wrapper:before {
+      background: $color-meta;
+      left: 16px;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 37px;
+    height: 21px;
+    border-radius: 37px;
+    background: $color-meta;
+    border: 1px solid $color-additional-light;
+
+    transition: all .2s linear;
+
+    &:before {
+      width: 17px;
+      height: 17px;
+      border-radius: 50%;
+      background: $color-brand;
+
+      position: absolute;
+      content: '';
+      top: 1px;
+      left: 2px;
+
+      transition: all .2s linear;
+    }
+  }
+
+  &__label {
+    cursor: pointer;
+    display: inline-flex;
+  }
 }

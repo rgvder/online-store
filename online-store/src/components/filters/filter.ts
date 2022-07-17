@@ -1,13 +1,14 @@
 import {ElementBuilder} from "../../controllers/element-builder";
-import {templateCheckbox, templateFilter, templateColorCheckbox} from "./template-filter";
+import {templateCheckbox, templateFilter, templateColorCheckbox, templateRangeSlider} from "./template-filter";
 import {FilterValue, Sotring} from "../../models/filter-value.interface";
 import {EventEmitter} from "../../controllers/event-emitter";
 import {Option} from "../../models/catalog.interface";
 import * as noUiSlider from 'nouislider';
+import Choices from 'choices.js';
 import {Item} from "../../models/item.interface";
 
 export class Filter {
-    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: [], price: [], cleaningType: [], color: []};
+    private value: FilterValue = {query: '', sorting: Sotring.Rating, brand: [], price: [], cleaningType: [], color: [], suctionPower: [], isPopular: false};
     private eventEmitter: EventEmitter = new EventEmitter();
     private filterBrand: Option[] = [];
     private cleaningType: Option[] = [];
@@ -33,35 +34,57 @@ export class Filter {
                 brandCheckbox: this.filterBrand.map((item: Option) => templateCheckbox(item)).join(''),
                 cleaningTypeCheckbox: this.cleaningType.map((item: Option) => templateCheckbox(item)).join(''),
                 colorCheckbox: this.color.map((item: Option) => templateColorCheckbox(item)).join(''),
+                sliderPrice: templateRangeSlider({selector: 'price', title: 'Цена', unit: '₽'}),
+                sliderSuctionPower: templateRangeSlider({selector: 'suction-power', title: 'Мощность всасывания', unit: 'Вт'})
             })
         );
 
         appWrapper.prepend(filterWrapper);
-
         this.eventEmitter.emit('filterChange', this.value);
+
+        // Сортировка
+        const form: HTMLFormElement = document.forms.namedItem('filter') as HTMLFormElement;
+        const sortingSelect: HTMLSelectElement = form.elements.namedItem('sorting') as HTMLSelectElement;
+        const choices = new Choices(sortingSelect, {
+            searchEnabled: false,
+            searchChoices: false,
+            itemSelectText: '',
+            position: 'auto',
+            sorter: () => 1,
+        });
 
         // Фильтр по цене
 
-        const filterPrice: noUiSlider.target = document.querySelector('.price__slider') as noUiSlider.target;
-        const inputStart: HTMLInputElement = document.querySelector('#inputStart') as HTMLInputElement;
-        const inputEnd: HTMLInputElement = document.querySelector('#inputEnd') as HTMLInputElement;
-        const inputs = [inputStart, inputEnd];
+
         const arrPrice: number[] = this.items.map((item: Item) => item.price);
-        const minPrice = Math.min(...arrPrice);
-        const maxPrice = Math.max(...arrPrice);
+        const arrSuctionPower: number[] = this.items.map((item: Item) => item.suctionPower);
 
-        inputStart.setAttribute('placeholder', minPrice.toString());
-        inputEnd.setAttribute('placeholder', maxPrice.toString());
+        this.addRangeSlider('.price', arrPrice, 'price');
+        this.addRangeSlider('.suction-power', arrSuctionPower, 'suctionPower');
 
-        noUiSlider.create(filterPrice, {
-            start: [minPrice, maxPrice],
+    }
+
+    private addRangeSlider(selector: string, arrayValues: number[], key: 'price' | 'suctionPower'): void {
+        const sliderWrapper: noUiSlider.target = document.querySelector(selector) as noUiSlider.target;
+        const slider: noUiSlider.target = sliderWrapper.querySelector('.slider__wrapper') as noUiSlider.target;
+        const inputStart: HTMLInputElement = sliderWrapper.querySelector('.input-start') as HTMLInputElement;
+        const inputEnd: HTMLInputElement = sliderWrapper.querySelector('.input-end') as HTMLInputElement;
+        const inputs = [inputStart, inputEnd];
+        const min: number = Math.min(...arrayValues);
+        const max: number = Math.max(...arrayValues);
+
+        inputStart.setAttribute('placeholder', min.toString());
+        inputEnd.setAttribute('placeholder', max.toString());
+
+        noUiSlider.create(slider, {
+            start: [min, max],
             connect: true,
             tooltips: true,
             padding: 0,
             step: 1,
             range: {
-                'min': minPrice,
-                'max': maxPrice
+                'min': min,
+                'max': max
             },
             format: {
                 to: (value: number) => Math.round(value),
@@ -69,19 +92,17 @@ export class Filter {
             }
         });
 
-        filterPrice.noUiSlider?.on('update', ((values: (number | string)[], handle: number) => {
+        slider.noUiSlider?.on('update', ((values: (number | string)[], handle: number) => {
             inputs[handle].value = <string>values[handle];
         }))
-        const arr: number[] = [minPrice, maxPrice];
+        const arr: number[] = [min, max];
 
         const filterSlider = (index: number, value: number) => {
             arr[index] = value;
 
             this.value.price = arr;
 
-            console.log(arr);
-
-            filterPrice.noUiSlider?.set(arr);
+            slider.noUiSlider?.set(arr);
         };
 
         inputs.forEach((element: HTMLInputElement, index: number) => {
@@ -91,7 +112,13 @@ export class Filter {
         });
 
         this.addListeners();
+
+        slider.noUiSlider?.on('change', ((values: (number | string)[]) => {
+            this.value[key] = values as number[];
+            this.eventEmitter.emit('filterChange', this.value);
+        }))
     }
+
 
     private addListeners(): void {
         const form: HTMLFormElement = document.forms.namedItem('filter') as HTMLFormElement;
@@ -115,6 +142,7 @@ export class Filter {
             ?.addEventListener('click', () => {
                 queryInput.value = '';
                 this.value.query = '';
+                this.eventEmitter.emit('filterChange', this.value);
             });
 
         const sortingSelect: HTMLSelectElement = form.elements.namedItem('sorting') as HTMLSelectElement;
@@ -132,14 +160,12 @@ export class Filter {
         this.addCheckboxListeners(cleaningTypeCheckboxes, 'cleaningType');
         this.addCheckboxListeners(colorCheckboxes, 'color');
 
+        const inputIsPopular: HTMLInputElement = form.elements.namedItem('popular') as HTMLInputElement;
 
-// Фильтр по цене
-        const filterPrice: noUiSlider.target = document.querySelector('.price__slider') as noUiSlider.target;
-
-        filterPrice.noUiSlider?.on('change', ((values: (number | string)[]) => {
-            this.value.price = values as number[];
+        inputIsPopular.addEventListener('change', () => {
+            this.value.isPopular = inputIsPopular.checked;
             this.eventEmitter.emit('filterChange', this.value);
-        }))
+        })
     }
 
     private addCheckboxListeners(checkboxes: HTMLCollectionOf<HTMLInputElement>, key: 'brand' | 'cleaningType'| 'color') {

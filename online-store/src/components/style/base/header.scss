@@ -1,9 +1,18 @@
 @import "constants";
 
 .header {
-  &__wrapper {}
+  &__wrapper {
+    padding-top: 30px;
+    padding-bottom: 30px;
+  }
+
   &__logo {
     display: flex;
     align-items: center;
+  }
+
+  &__title {
+    @include font(normal, 900, 2rem, 130%);
+    color: $color-basic;
   }
 }

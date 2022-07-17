@@ -2,7 +2,7 @@
 
 .card {
   display: flex;
-  border-bottom: 1px solid $color-additional;
+  border-bottom: 1px solid $color-additional-light;
   padding: 20px;
   justify-content: space-between;
   align-items: center;
@@ -11,6 +11,44 @@
     display: block;
     padding-right: 20px;
   }
+
+  &__rating {
+    background: url("../../assets/source/icons/rating.png") repeat-x bottom;
+    background-size: 22px 36px;
+    height: 18px;
+    width: 110px;
+    margin-left: -3px;
+    margin-bottom: 7px;
+
+    &:after {
+      content: '';
+      background: url("../../assets/source/icons/rating.png") repeat-x left top;
+      background-size: 22px 36px;
+      display: block;
+      height: 18px;
+    }
+
+    &.rating-1:after {
+      width: 22px;
+    }
+
+    &.rating-2:after {
+      width: calc(22px * 2);
+    }
+
+    &.rating-3:after {
+      width: calc(22px * 3);
+    }
+
+    &.rating-4:after {
+      width: calc(22px * 4);
+    }
+
+    &.rating-5:after {
+      width: calc(22px * 5);
+    }
+  }
+
 
   &__info {
     padding-right: 20px;

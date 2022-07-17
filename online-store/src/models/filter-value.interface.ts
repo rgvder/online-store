@@ -13,6 +13,8 @@ export interface FilterValue extends BaseObject {
     sorting: Sotring;
     brand: number[];
     price: number[];
+    suctionPower: number[];
     cleaningType: number[];
     color: number[];
+    isPopular: boolean;
 }

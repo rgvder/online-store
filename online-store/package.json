@@ -34,6 +34,7 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
+    "choices.js": "^10.1.0",
     "nouislider": "^15.6.0"
   }
 }

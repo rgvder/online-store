@@ -5,6 +5,9 @@ export const templateCard = ElementBuilder.buildTemplate`
   <img class="card__image" src="${'image'}" alt="${'model'}" width="200px">
   <div class="card__info">
     <h3 class="header-text">${'model'}</h3>
+    <div class="card__rating rating-${'rating'}">
+    
+</div>
     <ul class="info">
       <li class="info__list">
         <span class="text">Производитель</span>
