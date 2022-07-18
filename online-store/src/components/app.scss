@@ -1,5 +1,10 @@
 @import "style/base/constants";
 
+.app {
+  flex: 1 0 auto;
+}
+
 .app__wrapper {
   display: flex;
+  justify-content: space-between;
 }

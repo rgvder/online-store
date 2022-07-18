@@ -1,10 +1,27 @@
+@import "../style/base/constants";
+
 .notification {
-  display: none;
-  width: 300px;
-  height: 300px;
-  border: 2px solid black;
+  display: flex;
+  width: 250px;
+  height: 120px;
+  padding: 15px;
+  border: 1px solid $color-brand;
+  border-radius: 10px;
+  position: fixed;
+  bottom: 20px;
+  right: -250px;
+  z-index: 1;
+  background-color: #18686a47;
+  @include font(normal, 700, 1.6rem, 160%);
+  color: $color-basic;
+  justify-content: center;
+  align-items: center;
+
+  transition: transform .2s ease-out;
+
+  transform: translateX(0);
 
   &_active {
-    display: block;
+    transform: translateX(-270px);
   }
 }

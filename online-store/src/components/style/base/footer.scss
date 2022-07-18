@@ -1,0 +1,23 @@
+@import "constants";
+
+.footer {
+  flex-shrink: 0;
+
+  &__wrapper {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__link {
+    display: block;
+  }
+
+  &__info {
+    display: flex;
+    @include font(normal, 700, 1.6rem, 160%);
+    align-items: center;
+  }
+}

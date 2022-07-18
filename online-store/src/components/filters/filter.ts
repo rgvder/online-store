@@ -52,7 +52,6 @@ export class Filter {
         appWrapper.prepend(filterWrapper);
         this.filterChange();
 
-        // Сортировка
         const form: HTMLFormElement = document.forms.namedItem('filter') as HTMLFormElement;
         const sortingSelect: HTMLSelectElement = form.elements.namedItem('sorting') as HTMLSelectElement;
         const choices = new Choices(sortingSelect, {
@@ -64,9 +63,6 @@ export class Filter {
         });
 
         choices.setChoiceByValue(this.value.sorting);
-
-        // Фильтр по цене
-
 
         const arrPrice: number[] = this.items.map((item: Item) => item.price);
         const arrSuctionPower: number[] = this.items.map((item: Item) => item.suctionPower);
@@ -84,7 +80,6 @@ export class Filter {
         const inputs = [inputStart, inputEnd];
         const min: number = this.countMinValue(arrayOfValues);
         const max: number = this.countMaxValue(arrayOfValues);
-
         const start: number[] = savedValue?.length ? savedValue : [min, max];
 
         inputStart.setAttribute('placeholder', min.toString());
@@ -110,12 +105,10 @@ export class Filter {
             inputs[handle].value = <string>values[handle];
         }))
         const arr: number[] = [min, max];
-
         const filterSlider = (index: number, value: number) => {
             arr[index] = value;
 
             this.value.price = arr;
-
             slider.noUiSlider?.set(arr);
         };
 
@@ -170,12 +163,11 @@ export class Filter {
         const cleaningTypeCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('cleaningTypeCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
         const brandCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('brandCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
         const colorCheckboxes: HTMLCollectionOf<HTMLInputElement> = (form.elements.namedItem('colorCheckbox') as HTMLFieldSetElement).elements as HTMLCollectionOf<HTMLInputElement>;
+        const inputIsPopular: HTMLInputElement = form.elements.namedItem('popular') as HTMLInputElement;
 
         this.addCheckboxListeners(brandCheckboxes, 'brand');
         this.addCheckboxListeners(cleaningTypeCheckboxes, 'cleaningType');
         this.addCheckboxListeners(colorCheckboxes, 'color');
-
-        const inputIsPopular: HTMLInputElement = form.elements.namedItem('popular') as HTMLInputElement;
 
         inputIsPopular.toggleAttribute('checked', this.value.isPopular);
 
@@ -237,22 +229,21 @@ export class Filter {
 
         queryInput.value = '';
         this.value.query = '';
-
         this.value.sorting = Sorting.Rating;
 
         localStorage.clear();
         this.eventEmitter.emit('reset', {});
     }
 
-    private countMinValue(arrayValues: number[]) {
+    private countMinValue(arrayValues: number[]): number {
         return Math.min(...arrayValues);
     }
 
-    private countMaxValue(arrayValues: number[]) {
+    private countMaxValue(arrayValues: number[]): number {
         return Math.max(...arrayValues);
     }
 
-    private resetCheckboxGroup(checkboxes: HTMLCollectionOf<HTMLInputElement>) {
+    private resetCheckboxGroup(checkboxes: HTMLCollectionOf<HTMLInputElement>): void {
         Array.from<HTMLInputElement>(checkboxes).forEach((element: HTMLInputElement) => {
             element.checked = false;
         })

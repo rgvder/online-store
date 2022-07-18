@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "image": "source/items/0.Roborock-S5-MAX-white.webp",
+    "image": "source/items/1.Roborock-S5-MAX-white.webp",
     "brand": "Roborock",
     "brandId": 0,
     "model": "Roborock S5 MAX",
@@ -17,7 +17,7 @@
   },
   {
     "id": 2,
-    "image": "source/items/1.Roborock-S5-MAX-black.webp",
+    "image": "source/items/2.Roborock-S5-MAX-black.webp",
     "brand": "Roborock",
     "brandId": 0,
     "model": "Roborock S5 MAX",
@@ -34,7 +34,7 @@
 
   {
     "id": 3,
-    "image": "source/items/2.Mi-Robot-Vacuum-Cleaner-1S-CN.webp",
+    "image": "source/items/3.Mi-Robot-Vacuum-Cleaner-1S-CN.webp",
     "brand": "Xiaomi",
     "brandId": 1,
     "model": "Xiaomi Mi Robot Vacuum Cleaner 1S CN",
@@ -51,24 +51,24 @@
 
   {
     "id": 4,
-    "image": "source/items/3.Xiaomi-Dreame-Bot-D9-Pro.webp",
-    "brand": "Xiaomi",
-    "brandId": 1,
-    "model": "Xiaomi Dreame Bot D9 Pro",
+    "image": "source/items/4.Roborock-S6-MaxV.webp",
+    "brand": "Roborock",
+    "brandId": 0,
+    "model": "Roborock S6 MaxV",
     "color": "черный",
     "colorId": 201,
-    "price": 30634,
-    "rating": 4,
-    "count": 2,
-    "suctionPower": 40,
+    "price": 39580,
+    "rating": 5,
+    "count": 7,
+    "suctionPower": 66,
     "cleaningType": "влажная и влажная",
     "cleaningTypeId": 101,
-    "isPopular": false
+    "isPopular": true
   },
 
   {
     "id": 5,
-    "image": "source/items/4.Polaris-PVCR-3200-IQ-Home-Aqua-blue.webp",
+    "image": "source/items/5.Polaris-PVCR-3200-IQ-Home-Aqua-blue.webp",
     "brand": "Polaris",
     "brandId": 2,
     "model": "Polaris PVCR 3200 IQ Home Aqua",
@@ -85,7 +85,7 @@
 
   {
     "id": 6,
-    "image": "source/items/5.Polaris-PVCR-3200-IQ-Home-Aqua-white.webp",
+    "image": "source/items/6.Polaris-PVCR-3200-IQ-Home-Aqua-white.webp",
     "brand": "Polaris",
     "brandId": 2,
     "model": "Polaris PVCR 3200 IQ Home Aqua",
@@ -102,7 +102,7 @@
 
   {
     "id": 7,
-    "image": "source/items/6.Tefal-RG7133RH.webp",
+    "image": "source/items/7.Tefal-RG7133RH.webp",
     "brand": "Tefal",
     "brandId": 3,
     "model": "Tefal RG7133RH",
@@ -115,5 +115,226 @@
     "cleaningType": "сухая",
     "cleaningTypeId": 100,
     "isPopular": true
+  },
+
+  {
+    "id": 8,
+    "image": "source/items/8.Kitfort-KT-533.webp",
+    "brand": "Kitfort",
+    "brandId": 4,
+    "model": "Kitfort KT-533",
+    "color": "черный",
+    "colorId": 201,
+    "price": 12590,
+    "rating": 4,
+    "count": 3,
+    "suctionPower": 20,
+    "cleaningType": "сухая и влажная",
+    "cleaningTypeId": 101,
+    "isPopular": true
+  },
+
+  {
+    "id": 9,
+    "image": "source/items/9.Ritmix-VC-020W.webp",
+    "brand": "Ritmix",
+    "brandId": 5,
+    "model": "Ritmix VC-020W",
+    "color": "черный",
+    "colorId": 201,
+    "price": 5216,
+    "rating": 2,
+    "count": 2,
+    "suctionPower": 16,
+    "cleaningType": "сухая",
+    "cleaningTypeId": 100,
+    "isPopular": false
+  },
+
+  {
+    "id": 10,
+    "image": "source/items/10.Dreame-Bot-Z10-Pro.webp",
+    "brand": "dreame",
+    "brandId": 6,
+    "model": "Dreame Bot Z10 Pro",
+    "color": "черный",
+    "colorId": 201,
+    "price": 40990,
+    "rating": 4,
+    "count": 1,
+    "suctionPower": 46,
+    "cleaningType": "сухая и влажная",
+    "cleaningTypeId": 101,
+    "isPopular": true
+  },
+
+  {
+    "id": 11,
+    "image": "source/items/11.Polaris-PVCR-0826.webp",
+    "brand": "Polaris",
+    "brandId": 2,
+    "model": "Polaris PVCR 0826 floris",
+    "color": "розовый",
+    "colorId": 204,
+    "price": 14189,
+    "rating": 4,
+    "count": 2,
+    "suctionPower": 22,
+    "cleaningType": "сухая и влажная",
+    "cleaningTypeId": 101,
+    "isPopular": true
+  },
+
+  {
+    "id": 12,
+    "image": "source/items/12.Polaris-PVCR-1020.webp",
+    "brand": "Polaris",
+    "brandId": 2,
+    "model": "Polaris PVCR 1020 FusionPRO",
+    "color": "синий",
+    "colorId": 202,
+    "price": 13565,
+    "rating": 3,
+    "count": 1,
+    "suctionPower": 25,
+    "cleaningType": "сухая",
+    "cleaningTypeId": 100,
+    "isPopular": false
+  },
+
+  {
+    "id": 13,
+    "image": "source/items/13.Eufy-RoboVac-G30-Hybrid.webp",
+    "brand": "Eufy",
+    "brandId": 7,
+    "model": "Eufy RoboVac G30 Hybrid",
+    "color": "коричневый",
+    "colorId": 205,
+    "price": 15239,
+    "rating": 3,
+    "count": 2,
+    "suctionPower": 40,
+    "cleaningType": "сухая и влажная",
+    "cleaningTypeId": 101,
+    "isPopular": false
+  },
+
+  {
+    "id": 14,
+    "image": "source/items/14.Lydsto-R1-Robot-white.webp",
+    "brand": "Lydsto",
+    "brandId": 8,
+    "model": "Lydsto R1 Robot Vacuum Cleaner",
+    "color": "белый",
+    "colorId": 200,
+    "price": 26490,
+    "rating": 4,
+    "count": 5,
+    "suctionPower": 50,
+    "cleaningType": "сухая и влажная",
+    "cleaningTypeId": 101,
+    "isPopular": true
+  },
+
+  {
+    "id": 15,
+    "image": "source/items/15.Lydsto-R1-Robot-black.webp",
+    "brand": "Lydsto",
+    "brandId": 8,
+    "model": "Lydsto R1 Robot Vacuum Cleaner",
+    "color": "черный",
+    "colorId": 201,
+    "price": 26490,
+    "rating": 4,
+    "count": 7,
+    "suctionPower": 50,
+    "cleaningType": "сухая и влажная",
+    "cleaningTypeId": 101,
+    "isPopular": true
+  },
+
+  {
+    "id": 16,
+    "image": "source/items/16.Xiaomi-Viomi-V-RVCLM21B.webp",
+    "brand": "Xiaomi",
+    "brandId": 1,
+    "model": "Xiaomi Viomi V RVCLM21B",
+    "color": "серый",
+    "colorId": 206,
+    "price": 32990,
+    "rating": 3,
+    "count": 1,
+    "suctionPower": 33,
+    "cleaningType": "сухая и влажная",
+    "cleaningTypeId": 101,
+    "isPopular": false
+  },
+
+  {
+    "id": 17,
+    "image": "source/items/17.Samsung-VR10M7010UW.webp",
+    "brand": "Samsung",
+    "brandId": 9,
+    "model": "Samsung VR10M7010UW",
+    "color": "белый",
+    "colorId": 200,
+    "price": 19869,
+    "rating": 2,
+    "count": 4,
+    "suctionPower": 10,
+    "cleaningType": "сухая",
+    "cleaningTypeId": 100,
+    "isPopular": false
+  },
+
+  {
+    "id": 18,
+    "image": "source/items/18.Samsung-VR50T95735W.webp",
+    "brand": "Samsung",
+    "brandId": 9,
+    "model": "Samsung VR50T95735W",
+    "color": "белый",
+    "colorId": 200,
+    "price": 83900,
+    "rating": 3,
+    "count": 1,
+    "suctionPower": 30,
+    "cleaningType": "сухая",
+    "cleaningTypeId": 100,
+    "isPopular": false
+  },
+
+  {
+    "id": 19,
+    "image": "source/items/19.Samsung-VR05R5050W.webp",
+    "brand": "Samsung",
+    "brandId": 9,
+    "model": "Samsung VR05R5050W",
+    "color": "черный",
+    "colorId": 201,
+    "price": 23052,
+    "rating": 3,
+    "count": 3,
+    "suctionPower": 55,
+    "cleaningType": "сухая и влажная",
+    "cleaningTypeId": 101,
+    "isPopular": false
+  },
+
+  {
+    "id": 20,
+    "image": "source/items/20.Scarlett-SC-VC80R10.webp",
+    "brand": "Scarlett",
+    "brandId": 10,
+    "model": "Scarlett SC-VC80R10",
+    "color": "черный",
+    "colorId": 201,
+    "price": 7082,
+    "rating": 3,
+    "count": 2,
+    "suctionPower": 15,
+    "cleaningType": "сухая",
+    "cleaningTypeId": 100,
+    "isPopular": false
   }
 ]

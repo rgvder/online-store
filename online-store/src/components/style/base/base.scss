@@ -5,14 +5,14 @@
 * {
   list-style-type: none;
   box-sizing: border-box;
-  outline:none;
+  outline: none;
   border: none;
   margin: 0;
   padding: 0;
 }
 
 input[type='number'] {
-  -moz-appearance:textfield;
+  -moz-appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
@@ -30,15 +30,25 @@ html {
   font-family: $font-family-basic;
 }
 
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 .wrapper {
   margin: 0 auto;
   padding: 0 30px;
-  max-width: 1880px;
+  max-width: 1700px;
 }
 
-.text{
+.text {
   @include font(normal, 400, 1.4rem, 150%);
   color: $color-additional;
+
+  @media (max-width: 922px) {
+    font-size: 1.3rem;
+  }
+
 }
 
 .feature-text {
@@ -49,4 +59,8 @@ html {
   @include font(normal, 400, 1.7rem, 150%);
   color: $color-basic;
   margin-bottom: 10px;
+
+  @media (max-width: 922px) {
+    font-size: 1.4rem;
+  }
 }

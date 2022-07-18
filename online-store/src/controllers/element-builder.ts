@@ -10,7 +10,7 @@ export class ElementBuilder {
     }
 
     public static buildTemplate<T extends BaseObject>(strings: TemplateStringsArray, ...keys: string[]) {
-        return (function(obj: T): string {
+        return (function (obj: T): string {
 
             return keys.reduce((result: string, key: string, i: number) => {
 

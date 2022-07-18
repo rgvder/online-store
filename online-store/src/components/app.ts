@@ -21,10 +21,10 @@ export class App {
     public start(): void {
         const initialFilter: FilterValue = JSON.parse(localStorage.getItem('filterValue') || 'null') as FilterValue;
 
-        this.loader.load(`/source/items.json`, (items: BaseObject[]) => {
-            this.loader.load(`/source/brands.json`, (brands: BaseObject[]) => {
-                this.loader.load(`/source/cleaningType.json`, (cleaningType: BaseObject[]) => {
-                    this.loader.load(`/source/colors.json`, (color: BaseObject[]) => {
+        this.loader.load(`./source/items.json`, (items: BaseObject[]) => {
+            this.loader.load(`./source/brands.json`, (brands: BaseObject[]) => {
+                this.loader.load(`./source/cleaningType.json`, (cleaningType: BaseObject[]) => {
+                    this.loader.load(`./source/colors.json`, (color: BaseObject[]) => {
                         this.filter = new Filter(brands as Option[], items as Item[], cleaningType as Option[], color as Option[], initialFilter);
                         this.catalog = new Catalog(items as Item[]);
                         this.render();
@@ -37,6 +37,5 @@ export class App {
     public render(): void {
         this.catalog?.render('.catalog');
         this.filter?.render('.filters');
-        this.eventEmitter.on('filterChange', (data: Partial<FilterValue>) => console.log(data));
     }
 }

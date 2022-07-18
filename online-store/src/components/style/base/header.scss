@@ -20,16 +20,54 @@
   }
 }
 .menu {
-  padding-right: 20px;
   display: flex;
   align-items: center;
+  color: $color-meta;
+  @include font(normal, 900, 1.3rem, 150%);
 
-  :not(:last-child) {
-    margin-right: 20px;
+  img {
+    display: block;
+    margin-right: 5px;
   }
 
-  &__favorite {}
+  &__favorite {
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+  }
 
-  &__basket {}
+  &__favorite-count {
+    width: 28px;
+    height: 22px;
+    transition: all .2s linear;
+    border-radius: 4px;
+
+    &_active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $color-favorite;
+    }
+  }
+
+  &__basket {
+    display: flex;
+    align-items: center;
+  }
+
+  &__basket-count {
+    width: 28px;
+    height: 22px;
+    border-radius: 4px;
+    transition: all .2s linear;
+
+    &_active {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $color-basket;
+    }
+
+  }
 
 }

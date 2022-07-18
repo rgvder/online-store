@@ -6,12 +6,14 @@ import {FilterValue, Sorting} from "../../models/filter-value.interface";
 import {EventEmitter} from "../../controllers/event-emitter";
 import {Basket} from "../basket/basket";
 import {Favorite} from "../favorite/favorite";
+import {Notification} from "../notification/notification";
 
 export class Catalog {
     private items: Item[] = [];
     private eventEmitter: EventEmitter = new EventEmitter();
     private basket: Basket;
     private favorite: Favorite;
+    private notification = new Notification();
 
     constructor(items: Item[]) {
         const basketStorage: [[number, number]] = JSON.parse(localStorage.getItem('basket') || 'null') as [[number, number]];
@@ -25,8 +27,6 @@ export class Catalog {
     public render(selector: string): void {
         this.eventEmitter.on('filterChange', (data: Partial<FilterValue>) => {
             const appWrapper: HTMLElement = document.querySelector(selector) as HTMLElement;
-
-            appWrapper.innerHTML = '';
 
             const filterItems: Item[] = this.items
                 .filter((item: Item) => {
@@ -77,16 +77,24 @@ export class Catalog {
                         ...item,
                         basketCount: this.basket.getCountValue(item.id) || '',
                         isFavorite: this.favorite.isFavorite(item.id) ? 'favorite-active' : '',
+                        buttonClass: this.basket.getCountValue(item.id) ? 'button_expanded' : '',
+                        disabledClass: this.basket.getCountValue(item.id) === item.count ? 'disabled-add' : ''
                     })).join('')
                 })
             );
+
+            appWrapper.innerHTML = '';
+
+            if (!filterItems.length) {
+                this.notification.render('Извините, совпадений не обнаружено');
+            }
 
             appWrapper.append(catalogWrapper);
             this.addListeners();
         });
     }
 
-    private addListeners():void {
+    private addListeners(): void {
         const basketAdd: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.basket-add');
         const basketRemove: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.basket-remove');
         const buttonsFavorite: NodeListOf<HTMLButtonElement> = document.querySelectorAll('.button-favorite');
@@ -98,10 +106,12 @@ export class Catalog {
 
                 if (itemInBasket) {
                     this.eventEmitter.emit('addToBasket', itemInBasket);
-                    const cardBasketContent: number = this.basket.getCountValue(itemInBasket.id);
-                    basketCount.innerText = cardBasketContent ? cardBasketContent.toString() : '';
 
+                    const cardBasketContent: number = this.basket.getCountValue(itemInBasket.id);
+
+                    basketCount.innerText = cardBasketContent ? cardBasketContent.toString() : '';
                     button.parentElement?.classList.toggle('button_expanded', !!cardBasketContent);
+                    button.parentElement?.classList.toggle('disabled-add', cardBasketContent === itemInBasket.count);
                 }
             })
         })
@@ -113,10 +123,12 @@ export class Catalog {
 
                 if (itemInBasket) {
                     this.eventEmitter.emit('removeFromBasket', itemInBasket);
-                    const cardBasketContent: number = this.basket.getCountValue(itemInBasket.id);
-                    basketCount.innerText = cardBasketContent ? cardBasketContent.toString() : '';
 
+                    const cardBasketContent: number = this.basket.getCountValue(itemInBasket.id);
+
+                    basketCount.innerText = cardBasketContent ? cardBasketContent.toString() : '';
                     button.parentElement?.classList.toggle('button_expanded', !!cardBasketContent);
+                    button.parentElement?.classList.toggle('disabled-add', cardBasketContent === itemInBasket.count);
                 }
             })
         })

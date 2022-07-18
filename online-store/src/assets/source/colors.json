@@ -4,19 +4,40 @@
     "title": "белый",
     "additional": "#f1f1f1"
   },
+
   {
     "id": 201,
     "title": "черный",
     "additional": "#000000"
   },
+
   {
     "id": 202,
     "title": "синий",
     "additional": "#122cfa"
   },
+
   {
     "id": 203,
     "title": "красный",
     "additional": "#f75151"
+  },
+
+  {
+    "id": 204,
+    "title": "розовый",
+    "additional": "#e0aea2"
+  },
+
+  {
+    "id": 205,
+    "title": "коричневый",
+    "additional": "#874e19"
+  },
+
+  {
+    "id": 206,
+    "title": "серый",
+    "additional": "#9a9494"
   }
 ]

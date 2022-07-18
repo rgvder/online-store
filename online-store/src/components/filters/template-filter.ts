@@ -40,7 +40,7 @@ export const templateRangeSlider = ElementBuilder.buildTemplate`
 export const templateFilter = ElementBuilder.buildTemplate`
 <form class="filter__form" name="filter">
   <div class="search">
-    <input class="input-text" type="text" name="query" id="query" minlength="3" placeholder="Введите текст" autocomplete="off" autofocus>
+    <input class="input-text" type="text" name="query" id="query" minlength="3" placeholder="Поиск от 3 символов..." autocomplete="off" autofocus>
     <button class="search__button" type="button" id="queryButton">
     <svg class="search__icon" width="14" height="14" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M0.292893 0.292893C0.683417 -0.0976311 1.31658 -0.0976311 1.70711 0.292893L7.99999 6.58578L14.2929 0.292893C14.6834 -0.0976313 15.3166 -0.0976307 15.7071 0.292894C16.0976 0.683418 16.0976 1.31658 15.7071 1.70711L9.41421 7.99999L15.7071 14.2929C16.0976 14.6834 16.0976 15.3166 15.7071 15.7071C15.3166 16.0976 14.6834 16.0976 14.2929 15.7071L7.99999 9.41421L1.70711 15.7071C1.31658 16.0976 0.683418 16.0976 0.292894 15.7071C-0.0976307 15.3166 -0.0976313 14.6834 0.292893 14.2929L6.58578 7.99999L0.292893 1.70711C-0.0976311 1.31658 -0.0976311 0.683417 0.292893 0.292893Z"/>
@@ -52,7 +52,7 @@ export const templateFilter = ElementBuilder.buildTemplate`
   <input class="isPopular__input" type="checkbox" id="popular" name="popular">
   <label class="isPopular__label" for="popular">
     <div class="isPopular__wrapper"></div>
-    <span>Только популярные</span>
+    <span class="isPopular__text">Только популярные</span>
   </label>
 </div>
   
@@ -60,7 +60,7 @@ export const templateFilter = ElementBuilder.buildTemplate`
   <h3 class="filters__text">Сортировка</h3>
   <select class="sorting" name="sorting" id="sorting">
     <option value="nameAsc">
-    <span>по наименованию &#8593;</span>
+      <span>по наименованию &#8593;</span>
     </option>
     <option value="nameDesc">по наименованию &#8595;</option>
     <option value="priceAsc">по цене &#8593;</option>
@@ -95,7 +95,7 @@ export const templateFilter = ElementBuilder.buildTemplate`
     ${'sliderSuctionPower'}
     
     <div class="filters__buttons">
-      <buttton class="button button_basic" id="buttonClean">Очистить</buttton>
-      <buttton class="button button_basic" id="buttonReset">Сбросить</buttton>
+      <buttton class="button button_filters" id="buttonClean">Очистить</buttton>
+      <buttton class="button button_filters" id="buttonReset">Сбросить</buttton>
     </div>
 </form>`;

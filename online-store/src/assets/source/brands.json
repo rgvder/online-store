@@ -3,16 +3,54 @@
     "id": 0,
     "title": "Roborock"
   },
+
   {
     "id": 1,
     "title": "Xiaomi"
   },
+
   {
     "id": 2,
     "title": "Polaris"
   },
+
   {
     "id": 3,
     "title": "Tefal"
+  },
+
+  {
+    "id": 4,
+    "title": "Kitfort"
+  },
+
+  {
+    "id": 5,
+    "title": "Ritmix"
+  },
+
+  {
+    "id": 6,
+    "title": "dreame"
+  },
+
+  {
+    "id": 7,
+    "title": "Eufy"
+  },
+
+  {
+    "id": 8,
+    "title": "Lydsto"
+  },
+
+  {
+    "id": 9,
+    "title": "Samsung"
+  },
+
+  {
+    "id": 10,
+    "title": "Scarlett"
   }
 ]

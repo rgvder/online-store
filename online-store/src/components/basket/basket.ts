@@ -13,7 +13,6 @@ export class Basket {
         this.render();
 
         this.eventEmitter.on('addToBasket', (data: Partial<Item>) => {
-            console.log(this.items.values());
 
             const productCount: number = Array.from(this.items.values()).reduce((sum: number, item: number) => sum + item, 0);
 
@@ -57,7 +56,6 @@ export class Basket {
 
     private add(id: number): void {
         this.items.set(id, (this.items.get(id) || 0) + 1);
-        console.log(this.items.entries(), JSON.stringify(this.items.entries()));
 
         localStorage.setItem('basket', JSON.stringify(Array.from(this.items.entries())));
     }
@@ -76,18 +74,20 @@ export class Basket {
         localStorage.setItem('basket', JSON.stringify(Array.from(this.items.entries())));
     }
 
-    private render() {
+    private render(): void {
         const basketCount: HTMLElement = document.querySelector('.menu__basket-count') as HTMLElement;
 
         if (!this.items?.size) {
             basketCount.innerText = '';
+            basketCount.classList.remove('menu__basket-count_active');
             return;
         }
 
         basketCount.innerText = Array.from(this.items.values()).reduce((sum: number, item: number) => sum + item, 0).toString();
+        basketCount.classList.add('menu__basket-count_active');
     }
 
-    public getCountValue(id: number):number {
+    public getCountValue(id: number): number {
         return this.items?.get(id) || 0;
     }
 }

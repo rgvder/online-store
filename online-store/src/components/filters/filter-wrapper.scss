@@ -13,8 +13,6 @@
 
   &__buttons {
     padding-top: 40px;
-    display: flex;
-    justify-content: space-between;
   }
 
 }
@@ -30,11 +28,12 @@
   color: $color-basic;
   background: $color-meta;
   padding: 9px 12px;
-  transition: all .3s ease-out;
+  transition: all .3s linear;
+  margin-top: 5px;
 
   &:focus,
   &:focus-within,
-  &:hover{
+  &:hover {
     border: 1px solid rgba(23, 105, 106, 0.4);
     box-shadow: 0 80px 80px -20px rgba(23, 105, 106, 0.08), 0px 30px 24px -10px rgba(23, 105, 106, 0.05), 0px 12px 10px -6px rgba(23, 105, 106, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
   }
@@ -45,7 +44,7 @@
 
   &__icon {
     fill: $color-additional-light;
-    transition: all .3s ease-out;
+    transition: all .3s linear;
 
     &:hover {
       fill: $color-basic;
@@ -95,7 +94,7 @@
   font-size: 14px;
   min-height: 43px;
   overflow: hidden;
-  transition: all .3s ease-out;
+  transition: all .3s linear;
 }
 
 .choices__list--single {
@@ -116,6 +115,14 @@
 
 .choices__list--dropdown .choices__item--selectable, .choices__list[aria-expanded] .choices__item--selectable {
   padding-right: 0;
+}
+
+.choices__list--single .choices__item {
+  color: $color-basic-light;
+}
+
+.choices__list--dropdown, .choices__list[aria-expanded] {
+  color: $color-additional;
 }
 
 .input-number {
@@ -142,6 +149,14 @@
   border-radius: 4px;
   color: $color-basic-light;
   @include font(normal, 400, 1.2rem, 150%);
+
+  transition: all .2s linear;
+
+  &:focus,
+  &:hover {
+    border: 1px solid rgba(23, 105, 106, 0.4);
+    box-shadow: 0 80px 80px -20px rgba(23, 105, 106, 0.08), 0px 30px 24px -10px rgba(23, 105, 106, 0.05), 0px 12px 10px -6px rgba(23, 105, 106, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
+  }
 }
 
 .noUi-target {
@@ -152,11 +167,11 @@
 }
 
 .noUi-connect {
-background: $color-brand;
+  background: $color-brand;
 }
 
 .noUi-horizontal {
-height: 2px;
+  height: 2px;
 }
 
 .noUi-handle:after,
@@ -316,6 +331,15 @@ height: 2px;
 
 .isPopular {
   position: relative;
+  padding-top: 20px;
+  color: $color-additional;
+  @include font(normal, 400, 1.4rem, 150%);
+  transition: all .2s linear;
+
+  &:hover {
+    color: $color-basic-light;
+  }
+
 
   &__input {
     appearance: none;
@@ -330,17 +354,23 @@ height: 2px;
       background: $color-meta;
       left: 16px;
     }
+
+    &:checked + .isPopular__label .isPopular__text {
+      color: $color-basic-light;
+    }
   }
 
   &__wrapper {
     position: relative;
     width: 37px;
     height: 21px;
+    margin-right: 10px;
     border-radius: 37px;
     background: $color-meta;
     border: 1px solid $color-additional-light;
 
     transition: all .2s linear;
+
 
     &:before {
       width: 17px;
@@ -360,5 +390,10 @@ height: 2px;
   &__label {
     cursor: pointer;
     display: inline-flex;
+
+    &:hover .isPopular__wrapper {
+      border: 1px solid rgba(23, 105, 106, 0.4);
+      box-shadow: 0 80px 80px -20px rgba(23, 105, 106, 0.08), 0px 30px 24px -10px rgba(23, 105, 106, 0.05), 0px 12px 10px -6px rgba(23, 105, 106, 0.04), 0px 4px 4px -4px rgba(30, 33, 44, 0.03);
+    }
   }
 }

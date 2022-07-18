@@ -13,6 +13,12 @@
     background-color: $color-brand;
     border: 1px solid $color-brand;
     color: $color-meta;
+
+    &:hover,
+    &:active {
+      background-color: $color-brand-dark;
+      border-color: $color-brand-dark;
+    }
   }
 
   &_alternative {
@@ -24,5 +30,28 @@
   &_icon {
     background-color: inherit;
     padding: 0;
+  }
+
+  &_filters {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    border: 1px solid $color-brand;
+    @include font(normal, 900, 1.6rem, 314%);
+    color: $color-brand;
+    background-color: $color-meta;
+
+    transition: all .2s linear;
+
+    &:hover {
+      color: $color-meta;
+      background-color: $color-brand;
+    }
+
+    &:active {
+      color: $color-meta;
+      background-color: $color-brand-dark;
+      border-color: $color-brand-dark;
+    }
   }
 }

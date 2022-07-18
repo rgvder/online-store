@@ -13,7 +13,7 @@ export class EventEmitter {
         return this;
     }
 
-    public on(name: string, listener: (data: BaseObject) => void) {
+    public on(name: string, listener: (data: BaseObject) => void): void {
         if (!this.events.has(name)) {
             this.events.set(name, []);
         }
@@ -21,7 +21,7 @@ export class EventEmitter {
         this.events.get(name)?.push(listener);
     }
 
-    public removeListener(name: string, listenerToRemove: () => void) {
+    public removeListener(name: string, listenerToRemove: () => void): void {
         if (!this.events.has(name)) {
             return;
         }
@@ -31,7 +31,7 @@ export class EventEmitter {
     }
 
 
-    public emit(name: string, data: BaseObject) {
+    public emit(name: string, data: BaseObject): void {
         if (!this.events.has(name)) {
             return;
         }

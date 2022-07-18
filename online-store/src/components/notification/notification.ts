@@ -11,7 +11,7 @@ export class Notification {
         return this;
     }
 
-    public render(text: string) {
+    public render(text: string): void {
         if (this.active.length) {
             return;
         }
