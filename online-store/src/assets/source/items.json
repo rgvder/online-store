@@ -61,7 +61,7 @@
     "rating": 5,
     "count": 7,
     "suctionPower": 66,
-    "cleaningType": "влажная и влажная",
+    "cleaningType": "сухая и влажная",
     "cleaningTypeId": 101,
     "isPopular": true
   },
