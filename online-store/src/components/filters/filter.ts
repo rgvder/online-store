@@ -253,7 +253,6 @@ export class Filter {
         Array.from<HTMLInputElement>(checkboxes).forEach((element: HTMLInputElement) => {
             element.toggleAttribute('checked', this.value[key].includes(+element.id));
 
-
             element.addEventListener('change', () => {
                 const set: Set<number> = new Set(this.value[key]);
                 if (element.checked) {

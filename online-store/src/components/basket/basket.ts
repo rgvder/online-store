@@ -4,7 +4,7 @@ import {Notification} from "../notification/notification";
 
 export class Basket {
     private items: Map<number, number>;
-    private static instance: Basket;
+    private static instance: Basket | null;
     private eventEmitter = new EventEmitter();
     private notification = new Notification();
 

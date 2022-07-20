@@ -23,5 +23,4 @@ export class ElementBuilder {
     public static convertToString(value: string | number | boolean | number[]): string {
         return typeof value === 'string' ? value : value.toString();
     }
-
 }

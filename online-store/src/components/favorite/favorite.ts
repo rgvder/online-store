@@ -62,5 +62,4 @@ export class Favorite {
         favoriteCount.innerText = favoriteContent.toString();
         favoriteCount.classList.add('menu__favorite-count_active');
     }
-
 }
